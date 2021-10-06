@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\Books;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
 use Yii;
@@ -75,7 +76,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $model = Books::find()->where(['!=', 'status', 0]);
+        return $this->render('index', ['model'=>$model]);
     }
 
     /**
